@@ -38,6 +38,58 @@ mongoose
 
 const User = require("./models/user");
 const Order = require("./models/order");
+const Product = require("./models/product")
+
+
+
+
+
+app.post("/AddProduct", async (req, res) => {
+  console.log("Tai")
+  try {
+    const { id, title, category, oldPrice, price, image, carouselImages, color, ram, size} = req.body;
+    const NewProduct = new Product({ id, title, category, oldPrice, price, image, carouselImages, color, ram, size});
+    await NewProduct.save();
+    console.log("Tai")
+    console.log("Thêm sản phẩm thành công", NewProduct);
+    res.status(201).json({
+      message:
+        "Thành công",
+    });
+  } catch (error) {
+    console.log("Lỗi khi thêm sản phẩm:", error);
+    res.status(500).json({ message: "Thêm sản phẩm thất bại" });
+  }
+});
+
+app.get('/Products', async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.json(products);
+  } catch (error) {
+    console.error('Error fetching productssssss:', error);
+    res.status(500).json({ error: 'Failed to fetch products' });
+  }
+});
+app.get('/users', async (req, res) => {
+  try {
+    const user = await User.find();
+    res.json(user);
+  } catch (error) {
+    console.error('Error fetching productssssss:', error);
+    res.status(500).json({ error: 'Failed to fetch products' });
+  }
+});
+
+app.get('/orders', async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.json(orders);
+  } catch (error) {
+    console.error('Error fetching productssssss:', error);
+    res.status(500).json({ error: 'Failed to fetch products' });
+  }
+});
 
 app.post("/register", async (req, res) => {
   try {

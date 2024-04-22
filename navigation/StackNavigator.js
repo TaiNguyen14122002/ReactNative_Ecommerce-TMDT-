@@ -22,6 +22,7 @@ import User from 'react-native-vector-icons/AntDesign'
 import UUser from 'react-native-vector-icons/FontAwesome'
 import House from 'react-native-vector-icons/FontAwesome'
 import Cart from 'react-native-vector-icons/FontAwesome'
+import AddProduct from '../screens/AddProduct';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -124,6 +125,12 @@ const StackNavigator = () => {
         <Stack.Screen
           name="YourOrder"
           component={YourOrder}
+          options={{ headerShown: false }}
+          
+        />
+        <Stack.Screen
+          name="AddProduct"
+          component={AddProduct}
           options={{ headerShown: false }}
           
         />
